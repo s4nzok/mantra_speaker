@@ -10,7 +10,10 @@ const Audio = ({ src }) => {
   return (
     <audio ref={audioRef}>
       <source src={src} type="audio/mpeg" />
-      Your browser does not support the audio element.
+      Your browser does not support the audio Element. 
+      Your browser does not support the audio Element. 
+      Your browser does not support the audio Element. 
+
     </audio>
   );
 };
