@@ -92,6 +92,11 @@ const App = () => {
                 <br />
                 <select className="select" onChange={(e) => setSelectedMantra(e.target.value)}>
                     <option>Hare Krishna Hare Krishna Krishna Krishna Hare Hare Hare Ram Hare Ram Ram Ram Hare Hare </option>
+                    <option>Hare Krishna Hare Krishna Krishna Krishna Hare Hare Hare Ram Hare Ram Ram Ram Hare Hare </option>
+                    <option>Hare Krishna Hare Krishna Krishna Krishna Hare Hare Hare Ram Hare Ram Ram Ram Hare Hare </option>
+                    <option>Hare Krishna Hare Krishna Krishna Krishna Hare Hare Hare Ram Hare Ram Ram Ram Hare Hare </option>
+                    <option>Hare Krishna Hare Krishna Krishna Krishna Hare Hare Hare Ram Hare Ram Ram Ram Hare Hare </option>
+                    <option>Hare Krishna Hare Krishna Krishna Krishna Hare Hare Hare Ram Hare Ram Ram Ram Hare Hare </option>
                     <option>Om Krishnaya Namaha</option>
                     <option>Aum Devkinandanaye Vidmahe Vasudevaye Dhi-Mahi Tanno Krishna Prachodayat</option>
                     <option> Om Sri Krishnah sharanam mamah </option>
