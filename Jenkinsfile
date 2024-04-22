@@ -26,13 +26,12 @@
 // }
 
 
-
 pipeline {
     agent any
     
     environment {
         // Define environment variables
-        NODE_HOME = tool 'NodeJS'
+        NODE_HOME = tool name: 'NodeJS', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
         PATH = "${env.NODE_HOME}/bin:${env.PATH}"
     }
     
@@ -40,7 +39,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout your Git repository containing the React app
-                git 'https://github.com/s4nzok/mantra_speaker.git'
+                git branch: 'main', url: 'https://github.com/s4nzok/mantra_speaker.git'
             }
         }
         
@@ -62,7 +61,13 @@ pipeline {
             steps {
                 // Serve the React app using a web server
                 sh 'npm install -g serve'
-                sh 'serve -s build -l 3000 &'
+                script {
+                    background {
+                        sh 'serve -s build -l 3000'
+                    }
+                    // Wait for serve command to start
+                    sleep 10 // Adjust as needed
+                }
             }
         }
     }
@@ -78,7 +83,11 @@ pipeline {
         }
         always {
             // Clean up after pipeline execution
-            sh 'killall serve || true'
+            script {
+                // Kill serve process if it's running
+                sh 'pkill -f "serve -s build -l 3000" || true'
+            }
         }
     }
 }
+
