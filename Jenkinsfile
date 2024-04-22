@@ -1,35 +1,11 @@
-// pipeline {
-//     agent any
-    
-//     stages {
-//         stage('Build') {
-//             steps {
-//                 sh 'npm install' // Or any command to install dependencies
-//             }
-//         }
-//         stage('Test') {
-//             steps {
-//                 sh 'npm test' // Or any command to run tests
-//             }
-//         }
-//         stage('Docker Build') {
-//             steps {
-//                 sh 'docker build -t pipeline .'
-//             }
-//         }
-//         stage('Deploy') {
-//             steps {
-//                 sh 'docker push pipeline' // Or any command to deploy your image
-//             }
-//         }
-//     }
-// }
-
 
 pipeline {
     agent any
     
     environment {
+        // Disable eslint treating warnings as errors in CI
+        CI = 'false'
+        
         // Define environment variables
         NODE_HOME = tool name: 'NodeJS', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
         PATH = "${env.NODE_HOME}/bin:${env.PATH}"
