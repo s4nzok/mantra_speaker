@@ -40,7 +40,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout your Git repository containing the React app
-                git 'https://github.com/your/repo.git'
+                git 'https://github.com/s4nzok/mantra_speaker.git'
             }
         }
         
