@@ -37,12 +37,9 @@ pipeline {
             steps {
                 // Serve the React app using a web server
                 sh 'npm install -g serve'
-                script {
-                    background {
-                        sh 'serve -s build -l 3000'
-                    }
-                    // Wait for serve command to start
-                    sleep 10 // Adjust as needed
+                sh 'nohup serve -s build -l 3000 > serve.log 2>&1 &'
+                // Wait for serve command to start (optional)
+                sleep 10 // Adjust as needed
                 }
             }
         }
