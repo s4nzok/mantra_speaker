@@ -1,4 +1,3 @@
-
 pipeline {
     agent any
     
@@ -40,7 +39,6 @@ pipeline {
                 sh 'nohup serve -s build -l 3000 > serve.log 2>&1 &'
                 // Wait for serve command to start (optional)
                 sleep 10 // Adjust as needed
-                }
             }
         }
     }
@@ -63,4 +61,3 @@ pipeline {
         }
     }
 }
-
