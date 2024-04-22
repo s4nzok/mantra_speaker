@@ -26,19 +26,59 @@
 // }
 
 
+
 pipeline {
     agent any
-
+    
+    environment {
+        // Define environment variables
+        NODE_HOME = tool 'NodeJS'
+        PATH = "${env.NODE_HOME}/bin:${env.PATH}"
+    }
+    
     stages {
-        stage('Debug') {
+        stage('Checkout') {
             steps {
-                script {
-                    sh 'echo $PATH'
-                    sh 'which node'
-                    sh 'which npm'
-                }
+                // Checkout your Git repository containing the React app
+                git 'https://github.com/your/repo.git'
             }
         }
-        // Other stages
+        
+        stage('Install Dependencies') {
+            steps {
+                // Install dependencies
+                sh 'npm install'
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                // Build React app
+                sh 'npm run build'
+            }
+        }
+        
+        stage('Serve') {
+            steps {
+                // Serve the React app using a web server
+                sh 'npm install -g serve'
+                sh 'serve -s build -l 3000 &'
+            }
+        }
+    }
+    
+    post {
+        success {
+            // If the pipeline succeeds, print success message
+            echo 'React app is running at http://localhost:3000'
+        }
+        failure {
+            // If the pipeline fails, print failure message
+            echo 'Failed to run React app'
+        }
+        always {
+            // Clean up after pipeline execution
+            sh 'killall serve || true'
+        }
     }
 }
